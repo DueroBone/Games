@@ -1,5 +1,5 @@
 public class Game {
-  private Board board;
+  public Board board;
   private Player[] players;
   private Player currentPlayer;
   private GameState currentState;
@@ -7,8 +7,8 @@ public class Game {
   public Game() {
     board = new Board();
     players = new Player[2];
-    players[0] = new Player("Player 1", "X");
-    players[1] = new Player("Player 2", "O");
+    players[0] = new Player("Player X", "X", this);
+    players[1] = new Player("Player O", "O", this);
     currentPlayer = players[0];
     currentState = GameState.PLAYING;
   }

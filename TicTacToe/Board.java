@@ -1,18 +1,21 @@
 public class Board {
   // false is X, true is O
-  Boolean[][] board;
+  Boolean[][] board = new Boolean[3][3];
 
   void printBoard() {
+    System.out.println(" --------- ");
     for (Boolean[] row : board) {
+      System.out.print("|");
       for (Boolean cell : row) {
         if (cell == null) {
-          System.out.print(" ");
+          System.out.print(" • ");
           continue;
         }
-        System.out.print(cell ? "O" : "X");
+        System.out.print(cell ? " O " : " X ");
       }
-      System.out.println();
+      System.out.println("|");
     }
+    System.out.println(" --------- ");
   }
 
   void updateBoard(int[] location, String symbol) {
@@ -24,10 +27,15 @@ public class Board {
     int xCount = 0;
     int oCount = 0;
     for (Boolean[] row : board) {
+      xCount = 0;
+      oCount = 0;
       for (Boolean cell : row) {
+        if (cell == null) {
+          break;
+        }
         if (cell) {
           oCount++;
-        } else if (cell == false) {
+        } else {
           xCount++;
         }
       }
@@ -37,7 +45,6 @@ public class Board {
     }
 
     // check vertical
-    // i is the column, j is the row
     for (int i = 0; i < 3; i++) {
       xCount = 0;
       oCount = 0;
@@ -47,7 +54,7 @@ public class Board {
         }
         if (board[j][i]) {
           oCount++;
-        } else if (board[j][i] == false) {
+        } else {
           xCount++;
         }
       }
@@ -55,6 +62,40 @@ public class Board {
         return true;
       }
     }
+
+    // check diagonal
+    xCount = 0;
+    oCount = 0;
+    for (int i = 0; i < 3; i++) {
+      if (board[i][i] == null) {
+        break;
+      }
+      if (board[i][i]) {
+        oCount++;
+      } else {
+        xCount++;
+      }
+    }
+    if (xCount == 3 || oCount == 3) {
+      return true;
+    }
+
+    xCount = 0;
+    oCount = 0;
+    for (int i = 0; i < 3; i++) {
+      if (board[i][2 - i] == null) {
+        break;
+      }
+      if (board[i][2 - i]) {
+        oCount++;
+      } else {
+        xCount++;
+      }
+    }
+    if (xCount == 3 || oCount == 3) {
+      return true;
+    }
+
     return false;
   }
 
@@ -67,5 +108,9 @@ public class Board {
       }
     }
     return true;
+  }
+
+  Boolean getCell(int[] location) {
+    return board[location[0]][location[1]];
   }
 }
