@@ -16,12 +16,7 @@ public class Player {
   }
 
   public int[] getMove() {
-    // TODO
-    // 1. Ask the user for a row and column number
-    // 2. Return an array of two integers, the first being the row number and the
-    // second being the column number
-    // 3. If the user enters an invalid row or column number, ask them to enter a
-    // valid one
+    // 92.25 //
     System.out.print(symbol + ": Enter a row number and collum number: ");
     String input = scanner.nextLine();
     String[] numbers = input.strip().split(" ");

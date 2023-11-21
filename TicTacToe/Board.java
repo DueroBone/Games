@@ -80,6 +80,7 @@ public class Board {
       return true;
     }
 
+    // check other diagonal
     xCount = 0;
     oCount = 0;
     for (int i = 0; i < 3; i++) {
