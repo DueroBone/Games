@@ -18,8 +18,8 @@ public class TicTacToe {
       game.setPlayer(0, new Player(1, game));
       game.setPlayer(1, new ComputerPlayer(2, game));
     } else if (mode == 3) {
-      game.setPlayer(0, new Player(1, game));
-      game.setPlayer(1, new ComputerPlayer(2, game));
+      game.setPlayer(0, new ComputerPlayer(1, game));
+      game.setPlayer(1, new Player(2, game));
     } else if (mode == 4) {
       game.setPlayer(0, new ComputerPlayer(1, game));
       game.setPlayer(1, new ComputerPlayer(2, game));
