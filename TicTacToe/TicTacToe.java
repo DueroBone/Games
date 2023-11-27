@@ -7,7 +7,8 @@ public class TicTacToe {
     System.out.println("Enter a number to select a game mode:");
     System.out.println(" |  1. Human vs Human");
     System.out.println(" |  2. Human vs Computer");
-    System.out.println(" |  3. Computer vs Computer");
+    System.out.println(" |  3. Computer vs Human");
+    System.out.println(" |  4. Computer vs Computer");
     System.out.print(">> ");
     int mode = scanner.nextInt();
     if (mode == 1) {
@@ -17,10 +18,14 @@ public class TicTacToe {
       game.setPlayer(0, new Player(1, game));
       game.setPlayer(1, new ComputerPlayer(2, game));
     } else if (mode == 3) {
+      game.setPlayer(0, new Player(1, game));
+      game.setPlayer(1, new ComputerPlayer(2, game));
+    } else if (mode == 4) {
       game.setPlayer(0, new ComputerPlayer(1, game));
       game.setPlayer(1, new ComputerPlayer(2, game));
     } else {
-      System.out.println("Invalid input. Exiting...");
+      System.out.println("Invalid input. Restarting...\n\n");
+      main(args);
       System.exit(0);
     }
     game.play();

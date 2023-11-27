@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class ComputerPlayer extends Player {
   private int symbol;
   private Game thisGame;
@@ -10,12 +12,9 @@ public class ComputerPlayer extends Player {
 
   @Override
   public int[] getMove() {
-    return getBestMove(thisGame.board.getBoard());
-  }
-
-  private int[] getBestMove(int[][] board) {
-    int[] bestMove = { 4, 4 };
+    ArrayList<int[]> bestMoves = new ArrayList<int[]>();
     int bestScore = Integer.MIN_VALUE;
+    int[][] board = thisGame.board.getBoard();
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board.length; j++) {
         if (board[i][j] == 0) {
@@ -24,13 +23,15 @@ public class ComputerPlayer extends Player {
           board[i][j] = 0;
           if (score > bestScore) {
             bestScore = score;
-            bestMove[0] = i;
-            bestMove[1] = j;
+            bestMoves.clear();
+            bestMoves.add(new int[] { i, j });
+          } else if (score == bestScore) {
+            bestMoves.add(new int[] { i, j });
           }
         }
       }
     }
-    return bestMove;
+    return bestMoves.get((int) (Math.random() * bestMoves.size()));
   }
 
   private int minimax(int[][] board, boolean selfTurn) {
