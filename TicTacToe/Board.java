@@ -104,10 +104,13 @@ public class Board {
       return 2;
     }
 
+    if (checkForDraw()) {
+      return -1;
+    }
     return 0;
   }
 
-  boolean checkForDraw() {
+  private boolean checkForDraw() {
     for (int[] row : board) {
       for (int cell : row) {
         if (cell == 0) {

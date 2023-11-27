@@ -8,26 +8,20 @@ public class Game {
     board = new Board();
     players = new Player[2];
     players[0] = new Player(1, this);
-    // players[1] = new Player(2, this);
-    players[1] = new ComputerPlayer(2, this);
-    currentPlayer = players[0];
+    players[1] = new Player(2, this);
     currentState = GameState.PLAYING;
   }
 
-  public Game(Player player1, Player player2) {
-    this();
-    players[0] = player1;
-    players[1] = player2;
-  }
-
   public void play() {
+    currentPlayer = players[0];
     while (currentState == GameState.PLAYING) {
       board.printBoard();
       int[] move = currentPlayer.getMove();
       board.updateBoard(move, currentPlayer.getSymbol());
-      if (board.checkForWin() != 0) {
+      int winState = board.checkForWin();
+      if (winState > 0) {
         currentState = GameState.WON;
-      } else if (board.checkForDraw()) {
+      } else if (winState == -1) {
         currentState = GameState.DRAW;
       } else {
         currentPlayer = (currentPlayer == players[0]) ? players[1] : players[0];
@@ -40,5 +34,9 @@ public class Game {
     } else if (currentState == GameState.DRAW) {
       System.out.println("It's a draw!");
     }
+  }
+
+  public void setPlayer(int index, Player player) {
+    players[index] = player;
   }
 }
