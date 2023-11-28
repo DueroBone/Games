@@ -1,5 +1,6 @@
 public class Board {
   private int[][] board = new int[3][3];
+  private final int neededToWin = 3;
 
   void printBoard() {
     System.out.println(" --------- ");
@@ -38,18 +39,18 @@ public class Board {
           oCount++;
         }
       }
-      if (xCount == 3) {
+      if (xCount == neededToWin) {
         return 1;
-      } else if (oCount == 3) {
+      } else if (oCount == neededToWin) {
         return 2;
       }
     }
 
     // check vertical
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < board.length; i++) {
       xCount = 0;
       oCount = 0;
-      for (int j = 0; j < 3; j++) {
+      for (int j = 0; j < board[i].length; j++) {
         if (board[j][i] == 0) {
           break;
         }
@@ -59,9 +60,9 @@ public class Board {
           oCount++;
         }
       }
-      if (xCount == 3) {
+      if (xCount == neededToWin) {
         return 1;
-      } else if (oCount == 3) {
+      } else if (oCount == neededToWin) {
         return 2;
       }
     }
@@ -69,7 +70,7 @@ public class Board {
     // check diagonal left to right
     xCount = 0;
     oCount = 0;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < board.length; i++) {
       if (board[i][i] == 0) {
         break;
       }
@@ -79,28 +80,28 @@ public class Board {
         oCount++;
       }
     }
-    if (xCount == 3) {
+    if (xCount == neededToWin) {
       return 1;
-    } else if (oCount == 3) {
+    } else if (oCount == neededToWin) {
       return 2;
     }
 
     // check diagonal right to left
     xCount = 0;
     oCount = 0;
-    for (int i = 0; i < 3; i++) {
-      if (board[i][2 - i] == 0) {
+    for (int i = 0; i < board.length; i++) {
+      if (board[i][board.length - 1 - i] == 0) {
         break;
       }
-      if (board[i][2 - i] == 1) {
+      if (board[i][board.length - 1 - i] == 1) {
         xCount++;
       } else {
         oCount++;
       }
     }
-    if (xCount == 3) {
+    if (xCount == neededToWin) {
       return 1;
-    } else if (oCount == 3) {
+    } else if (oCount == neededToWin) {
       return 2;
     }
 

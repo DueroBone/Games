@@ -4,11 +4,13 @@ public class Player {
   private int symbol;
   private Scanner scanner;
   private Game thisGame;
+  private int maxboardIndex;
 
   /** 1 is X, 2 is O */
   public Player(int symbol, Game game) {
     this.symbol = symbol;
     this.thisGame = game;
+    this.maxboardIndex = game.board.getBoard().length - 1;
     scanner = new Scanner(System.in);
   }
 
@@ -30,7 +32,7 @@ public class Player {
     }
     int row = numbers[0] - 1;
     int col = numbers[1] - 1;
-    if (row < 0 || row > 2 || col < 0 || col > 2) {
+    if (row < 0 || row > maxboardIndex || col < 0 || col > maxboardIndex) {
       System.out.println("Invalid row or column number. Try again.");
       return getMove();
     }

@@ -19,7 +19,7 @@ public class ComputerPlayer extends Player {
       for (int j = 0; j < board.length; j++) {
         if (board[i][j] == 0) {
           board[i][j] = symbol;
-          int score = minimax(board, false);
+          int score = minimax(board, false, 0);
           board[i][j] = 0;
           if (score > bestScore) {
             bestScore = score;
@@ -34,23 +34,23 @@ public class ComputerPlayer extends Player {
     return bestMoves.get((int) (Math.random() * bestMoves.size()));
   }
 
-  private int minimax(int[][] board, boolean selfTurn) {
+  private int minimax(int[][] board, boolean selfTurn, int currentDepth) {
     int result = thisGame.board.checkForWin();
     if (result == -1) {
-      return 0;
+      return -10;
     } else if (result == symbol) {
       return 1000;
     } else if (result == (symbol == 1 ? 2 : 1)) {
-      return -1000;
+      return  -1000;
     }
 
     if (selfTurn) {
       int bestScore = Integer.MIN_VALUE;
       for (int i = 0; i < board.length; i++) {
-        for (int j = 0; j < board[i].length; j++) {
+        for (int j = 0; j < board.length; j++) {
           if (board[i][j] == 0) {
             board[i][j] = symbol;
-            int score = minimax(board, !selfTurn);
+            int score = minimax(board, !selfTurn, currentDepth + 1);
             board[i][j] = 0;
             bestScore = Math.max(score, bestScore);
           }
@@ -60,10 +60,10 @@ public class ComputerPlayer extends Player {
     } else {
       int bestScore = Integer.MAX_VALUE;
       for (int i = 0; i < board.length; i++) {
-        for (int j = 0; j < board[i].length; j++) {
+        for (int j = 0; j < board.length; j++) {
           if (board[i][j] == 0) {
             board[i][j] = symbol == 1 ? 2 : 1;
-            int score = minimax(board, !selfTurn);
+            int score = minimax(board, !selfTurn, currentDepth + 1);
             board[i][j] = 0;
             bestScore = Math.min(score, bestScore);
           }
