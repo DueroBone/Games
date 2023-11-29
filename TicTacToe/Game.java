@@ -3,6 +3,7 @@ public class Game {
   private Player[] players;
   private Player currentPlayer;
   private GameState currentState;
+  private final boolean Verbose = !TicTacToe.SilentMode;
 
   public Game() {
     board = new Board();
@@ -28,11 +29,13 @@ public class Game {
       }
     }
 
-    board.printBoard();
-    if (currentState == GameState.WON) {
-      System.out.println(currentPlayer.getSymbolChar() + " won!");
-    } else if (currentState == GameState.DRAW) {
-      System.out.println("It's a draw!");
+    if (Verbose) {
+      board.printBoard();
+      if (currentState == GameState.WON) {
+        System.out.println(currentPlayer.getSymbolChar() + " won!");
+      } else if (currentState == GameState.DRAW) {
+        System.out.println("It's a draw!");
+      }
     }
   }
 

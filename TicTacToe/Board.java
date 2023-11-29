@@ -1,21 +1,24 @@
 public class Board {
   private int[][] board = new int[3][3];
   private final int neededToWin = 3;
+  private final boolean Verbose = !TicTacToe.SilentMode;
 
   void printBoard() {
-    System.out.println(" --------- ");
-    for (int[] row : board) {
-      System.out.print("|");
-      for (int cell : row) {
-        if (cell == 0) {
-          System.out.print(" • ");
-          continue;
+    if (Verbose) {
+      System.out.println(" --------- ");
+      for (int[] row : board) {
+        System.out.print("|");
+        for (int cell : row) {
+          if (cell == 0) {
+            System.out.print(" • ");
+            continue;
+          }
+          System.out.print(cell == 1 ? " X " : " O ");
         }
-        System.out.print(cell == 1 ? " X " : " O ");
+        System.out.println("|");
       }
-      System.out.println("|");
+      System.out.println(" --------- ");
     }
-    System.out.println(" --------- ");
   }
 
   void updateBoard(int[] location, int symbol) {
@@ -33,7 +36,7 @@ public class Board {
         if (cell == 0) {
           break;
         }
-        if (cell==1) {
+        if (cell == 1) {
           xCount++;
         } else {
           oCount++;
