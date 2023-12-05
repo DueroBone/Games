@@ -4,7 +4,6 @@ public class ComputerPlayer extends Player {
   private int symbol;
   public Game thisGame;
   private final boolean multiThreaded = TicTacToe.multiThreaded;
-  private final boolean Verbose = TicTacToe.SilentMode;
   private final boolean showEngine = TicTacToe.ShowEngine;
 
   public ComputerPlayer(int symbol, Game game) {
@@ -135,9 +134,10 @@ public class ComputerPlayer extends Player {
     @Override
     public void run() {
       FinalResult = minimax(board, selfTurn);
-      if (Verbose) {
-        System.out.println((symbol == 1 ? "X" : "O") + ": " + getName() + " = " + FinalResult); // TODO: Remove
-      }
+      // if (showEngine) {
+      //   System.out.println((symbol == 1 ? "X" : "O") + ": " + getName() + " = " + FinalResult);
+      // }
+      Thread.currentThread().interrupt();
     }
   }
 }
