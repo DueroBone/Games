@@ -1,37 +1,43 @@
 import java.util.Scanner;
 
 public class Player {
-  private String symbol;
+  private int symbol;
   private Scanner scanner;
-  private Game m_game;
+  private Game thisGame;
+  private int maxboardIndex;
 
-  public Player(String symbol, Game game) {
+  /** 1 is X, 2 is O */
+  public Player(int symbol, Game game) {
     this.symbol = symbol;
-    this.m_game = game;
+    this.thisGame = game;
+    this.maxboardIndex = game.board.getBoard().length - 1;
     scanner = new Scanner(System.in);
   }
 
-  public String getSymbol() {
+  public int getSymbol() {
     return symbol;
   }
 
+  public char getSymbolChar() {
+    return symbol == 1 ? 'X' : 'O';
+  }
+
   public int[] getMove() {
-    // 92.25 //
-    System.out.print(symbol + ": Enter a row number and collum number: ");
-    String input = scanner.nextLine();
-    String[] numbers = input.strip().split(" ");
+    System.out.print(getSymbolChar() + ": Enter a row number and collum number: ");
+    int input = Integer.parseInt(scanner.nextLine().replaceAll("[^0-9]", ""));
+    int[] numbers = { input / 10, input % 10 };
     if (numbers.length != 2) {
       System.out.println("Invalid input. Ex: \"1 1\". Try again.");
       return getMove();
     }
-    int row = Integer.parseInt(numbers[0]) - 1;
-    int col = Integer.parseInt(numbers[1]) - 1;
-    if (row < 0 || row > 2 || col < 0 || col > 2) {
+    int row = numbers[0] - 1;
+    int col = numbers[1] - 1;
+    if (row < 0 || row > maxboardIndex || col < 0 || col > maxboardIndex) {
       System.out.println("Invalid row or column number. Try again.");
       return getMove();
     }
 
-    if (m_game.board.getCell(new int[] { row, col }) != null) {
+    if (thisGame.board.getCell(new int[] { row, col }) != 0) {
       System.out.println("That spot is already taken. Try again.");
       return getMove();
     }

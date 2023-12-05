@@ -1,109 +1,123 @@
 public class Board {
-  // false is X, true is O
-  Boolean[][] board = new Boolean[3][3];
+  private int[][] board = new int[3][3];
+  private final int neededToWin = 3;
+  private final boolean Verbose = !TicTacToe.SilentMode;
 
   void printBoard() {
-    System.out.println(" --------- ");
-    for (Boolean[] row : board) {
-      System.out.print("|");
-      for (Boolean cell : row) {
-        if (cell == null) {
-          System.out.print(" • ");
-          continue;
+    if (Verbose) {
+      System.out.println(" --------- ");
+      for (int[] row : board) {
+        System.out.print("|");
+        for (int cell : row) {
+          if (cell == 0) {
+            System.out.print(" • ");
+            continue;
+          }
+          System.out.print(cell == 1 ? " X " : " O ");
         }
-        System.out.print(cell ? " O " : " X ");
+        System.out.println("|");
       }
-      System.out.println("|");
+      System.out.println(" --------- ");
     }
-    System.out.println(" --------- ");
   }
 
-  void updateBoard(int[] location, String symbol) {
-    board[location[0]][location[1]] = symbol.equals("X") ? false : true;
+  void updateBoard(int[] location, int symbol) {
+    board[location[0]][location[1]] = symbol;
   }
 
-  boolean checkForWin() {
+  int checkForWin() {
     // check horizontal
     int xCount = 0;
     int oCount = 0;
-    for (Boolean[] row : board) {
+    for (int[] row : board) {
       xCount = 0;
       oCount = 0;
-      for (Boolean cell : row) {
-        if (cell == null) {
+      for (int cell : row) {
+        if (cell == 0) {
           break;
         }
-        if (cell) {
-          oCount++;
-        } else {
+        if (cell == 1) {
           xCount++;
+        } else {
+          oCount++;
         }
       }
-      if (xCount == 3 || oCount == 3) {
-        return true;
+      if (xCount == neededToWin) {
+        return 1;
+      } else if (oCount == neededToWin) {
+        return 2;
       }
     }
 
     // check vertical
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < board.length; i++) {
       xCount = 0;
       oCount = 0;
-      for (int j = 0; j < 3; j++) {
-        if (board[j][i] == null) {
+      for (int j = 0; j < board[i].length; j++) {
+        if (board[j][i] == 0) {
           break;
         }
-        if (board[j][i]) {
-          oCount++;
-        } else {
+        if (board[j][i] == 1) {
           xCount++;
+        } else {
+          oCount++;
         }
       }
-      if (xCount == 3 || oCount == 3) {
-        return true;
+      if (xCount == neededToWin) {
+        return 1;
+      } else if (oCount == neededToWin) {
+        return 2;
       }
     }
 
-    // check diagonal
+    // check diagonal left to right
     xCount = 0;
     oCount = 0;
-    for (int i = 0; i < 3; i++) {
-      if (board[i][i] == null) {
+    for (int i = 0; i < board.length; i++) {
+      if (board[i][i] == 0) {
         break;
       }
-      if (board[i][i]) {
-        oCount++;
-      } else {
+      if (board[i][i] == 1) {
         xCount++;
+      } else {
+        oCount++;
       }
     }
-    if (xCount == 3 || oCount == 3) {
-      return true;
+    if (xCount == neededToWin) {
+      return 1;
+    } else if (oCount == neededToWin) {
+      return 2;
     }
 
-    // check other diagonal
+    // check diagonal right to left
     xCount = 0;
     oCount = 0;
-    for (int i = 0; i < 3; i++) {
-      if (board[i][2 - i] == null) {
+    for (int i = 0; i < board.length; i++) {
+      if (board[i][board.length - 1 - i] == 0) {
         break;
       }
-      if (board[i][2 - i]) {
-        oCount++;
-      } else {
+      if (board[i][board.length - 1 - i] == 1) {
         xCount++;
+      } else {
+        oCount++;
       }
     }
-    if (xCount == 3 || oCount == 3) {
-      return true;
+    if (xCount == neededToWin) {
+      return 1;
+    } else if (oCount == neededToWin) {
+      return 2;
     }
 
-    return false;
+    if (checkForDraw()) {
+      return -1;
+    }
+    return 0;
   }
 
-  boolean checkForDraw() {
-    for (Boolean[] row : board) {
-      for (Boolean cell : row) {
-        if (cell == null) {
+  private boolean checkForDraw() {
+    for (int[] row : board) {
+      for (int cell : row) {
+        if (cell == 0) {
           return false;
         }
       }
@@ -111,7 +125,11 @@ public class Board {
     return true;
   }
 
-  Boolean getCell(int[] location) {
+  int getCell(int[] location) {
     return board[location[0]][location[1]];
+  }
+
+  int[][] getBoard() {
+    return board;
   }
 }
