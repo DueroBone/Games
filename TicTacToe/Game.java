@@ -32,9 +32,9 @@ public class Game {
     if (Verbose) {
       board.printBoard();
       if (currentState == GameState.WON) {
-        System.out.println(currentPlayer.getSymbolChar() + " won!");
+        System.out.println(currentPlayer.getSymbolChar() + " won.");
       } else if (currentState == GameState.DRAW) {
-        System.out.println("It's a draw!");
+        System.out.println("It's a draw.");
       }
     }
   }

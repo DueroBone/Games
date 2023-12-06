@@ -69,7 +69,7 @@ public class Player {
         }
       }
       if (isBust()) {
-        System.out.println(name + " is bust!");
+        System.out.println(name + " is bust.");
         keepGoing = false;
         game.turn++;
       }

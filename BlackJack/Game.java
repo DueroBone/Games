@@ -38,6 +38,6 @@ public class Game {
         bestPlayer = player;
       }
     }
-    System.out.println(bestPlayer.getName() + " wins!");
+    System.out.println(bestPlayer.getName() + " wins.");
   }
 }

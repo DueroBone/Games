@@ -30,7 +30,7 @@ public class Hangman {
         }
       }
       if (word.equals(new String(wordState))) {
-        System.out.println("The word is \"" + word + "\". You win!");
+        System.out.println("The word is \"" + word + "\". You win.");
         break;
       }
     }

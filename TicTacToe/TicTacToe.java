@@ -22,7 +22,7 @@ public class TicTacToe {
       Game game = new Game();
       Scanner scanner = new Scanner(System.in);
       System.out.println("-----------------------------------");
-      System.out.println("Welcome to Tic Tac Toe!");
+      System.out.println("Welcome to Tic Tac Toe.");
       System.out.println("Enter a number to select a game mode:");
       System.out.println(" |  1. Human vs Human");
       System.out.println(" |  2. Human vs Computer");

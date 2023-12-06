@@ -19,7 +19,7 @@ public class Deck {
 
   public Card draw() {
     if (cards.size() == 0) {
-      throw new IllegalStateException("Deck is empty!");
+      throw new IllegalStateException("Deck is empty.");
     }
     int index = (int) (Math.random() * cards.size());
     Card card = cards.get(index);
