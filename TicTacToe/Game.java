@@ -1,3 +1,5 @@
+package TicTacToe;
+
 public class Game {
   public Board board;
   private Player[] players;
