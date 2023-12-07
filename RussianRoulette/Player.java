@@ -1,7 +1,5 @@
 package RussianRoulette;
 
-import java.io.IOException;
-
 public class Player {
   private int name;
   private Game game;
@@ -18,7 +16,6 @@ public class Player {
     System.out.println("1. Pull the trigger");
     System.out.println("2. Spin the chamber");
     System.out.print(" >> ");
-    int pos = game.wheel.bulletPosition;
     
     if (scanner.nextInt() == 2) {
       game.wheel.spin();
