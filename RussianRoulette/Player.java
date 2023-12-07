@@ -17,8 +17,12 @@ public class Player {
     System.out.println("2. Spin the chamber");
     System.out.print(" >> ");
     
-    if (scanner.nextInt() == 2) {
+    int input = scanner.nextInt();
+    if (input == 2) {
       game.wheel.spin();
+      getMove();
+    } else if (input != 1) {
+      System.out.println("Invalid input.");
       getMove();
     }
     if (game.wheel.fire()) {
