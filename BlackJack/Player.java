@@ -12,6 +12,8 @@ public class Player {
   public Player(String name, Game game) {
     this.name = name;
     this.game = game;
+    pickUp(game.deck.draw());
+    pickUp(game.deck.draw());
   }
 
   public Player(String name, Game game, int target) {
@@ -52,6 +54,8 @@ public class Player {
           pickUp(game.deck.draw());
           System.out.println(this);
         } else {
+          System.out.println(getName() + " stays at " + getHandValue() + ".");
+          sleep();
           keepGoing = false;
           game.turn++;
           break;
@@ -63,6 +67,7 @@ public class Player {
           pickUp(game.deck.draw());
           System.out.println(this);
         } else if (move.strip().equalsIgnoreCase("stay")) {
+          System.out.println(getName() + " stays at " + getHandValue() + ".");
           keepGoing = false;
           game.turn++;
           break;
@@ -70,9 +75,22 @@ public class Player {
       }
       if (isBust()) {
         System.out.println(name + " is bust.");
+        sleep();
         keepGoing = false;
         game.turn++;
       }
+    }
+  }
+
+  private void sleep() {
+    try {
+      if (isBot) {
+        Thread.sleep(250);
+      } else {
+        Thread.sleep(1500);
+      }
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
   }
 

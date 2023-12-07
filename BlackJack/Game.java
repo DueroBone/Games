@@ -16,7 +16,13 @@ public class Game {
     }
     System.out.print("How many bots? ");
     int numBots = scanner.nextInt();
-    for (int i = 1; i <= numBots; players.add(new Player("Bot " + (i++), this, (int) (Math.random() * 10 + 12)))) {
+    for (int i = 1; i <= numBots; players.add(new Player("Bot " + (i++), this, (int) (Math.random() * 3 + 18)))) {
+    }
+    if (players.size() == 0) {
+      System.out.println("You need at least one player.");
+      System.exit(0);
+    } else if (players.size() >= 12) {
+      System.out.println("The deck will likely run out of cards.");
     }
     System.out.println("\n====================\n");
   }
@@ -24,6 +30,7 @@ public class Game {
   public void play() {
     while (!gameOver) {
       Player player = players.get(turn);
+      System.out.println(player);
       player.getMove();
       if (turn >= players.size()) {
         gameOver = true;
@@ -38,6 +45,11 @@ public class Game {
         bestPlayer = player;
       }
     }
-    System.out.println(bestPlayer.getName() + " wins.");
+    if (bestPlayer == null) {
+      System.out.print("Nobody");
+    } else {
+      System.out.print(bestPlayer.getName());
+    }
+    System.out.println(" wins.");
   }
 }
