@@ -9,7 +9,7 @@ public class Deck {
     String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
     String[] ranks = { "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
         "Jack", "Queen", "King" };
-    int[] values = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
+    int[] values = { 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
     for (int i = 0; i < suits.length; i++) {
       for (int j = 0; j < ranks.length; j++) {
         cards.add(new Card(suits[i], ranks[j], values[j]));

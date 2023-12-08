@@ -96,14 +96,21 @@ public class Player {
 
   private class Hand {
     private ArrayList<Card> cards = new ArrayList<Card>();
-    private int value = 0;
 
     public void add(Card card) {
       cards.add(card);
-      value += card.getValue();
     }
 
     public int getValue() {
+      int value = 0;
+      for (Card card : cards) {
+        value += card.getValue();
+      }
+      for (Card card : cards) {
+        if (card.getRank().equals("Ace") && value > 21) {
+          value -= 10;
+        }
+      }
       return value;
     }
 

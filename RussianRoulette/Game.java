@@ -15,11 +15,11 @@ public class Game {
       players.add(new Player(i + 1, this));
     }
     while (true) {
-      if (getLivingPlayers() <= 1) {
+      if (getLivingPlayersNum() <= 1) {
         break;
       }
 
-      Player player = getLivePlayer();
+      Player player = getNextLivePlayer();
       System.out.println("\nPlayer " + player + "'s turn.");
       player.getMove();
       currentPlayer = (currentPlayer + 1) % players.size();
@@ -29,10 +29,10 @@ public class Game {
         System.out.println("Player " + player + " is alive.\n");
       }
     }
-    System.out.println("Player " + getLivePlayer() + " survived.");
+    System.out.println("Player " + getNextLivePlayer() + " survived.");
   }
 
-  private int getLivingPlayers() {
+  private int getLivingPlayersNum() {
     int livingPlayers = 0;
     for (Player player : players) {
       if (!player.isDead()) {
@@ -42,7 +42,7 @@ public class Game {
     return livingPlayers;
   }
 
-  private Player getLivePlayer() {
+  private Player getNextLivePlayer() {
     Player player = players.get(currentPlayer);
     while (player.isDead()) {
       currentPlayer = (currentPlayer + 1) % players.size();
