@@ -2,6 +2,8 @@ public class Player {
   String name;
   int position = 0;
   int money = 1500;
+  boolean inJail;
+  boolean getOutOfJailCard;
 
   public Player(String name) {
     this.name = name;
