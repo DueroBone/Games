@@ -120,7 +120,7 @@ public class ActionsDeck {
 
       if (houseHotelPrice != null) {
         int total = 0;
-        for (Property prop : board.props) {
+        for (Property prop : board.properties) {
           if (prop.owner == null) {
             continue;
           }

@@ -15,7 +15,7 @@ public class MonopolyGame {
       Player player = players[turn % players.length];
       dice.roll();
       player.move(dice.value);
-      Property property = board.props[player.position];
+      Property property = board.properties[player.position];
       player.buyProperty(property);
       if (dice.isDoubles) {
         turn--;

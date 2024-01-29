@@ -1,36 +1,48 @@
 public class SpecialProperty extends Property {
-  boolean isChance = false;
-  boolean isCommunityChest = false;
-  boolean isJail = false;
+  SpecialPropertyType type;
 
   public SpecialProperty(String name, Board board) {
     super(name, 0, 0, 0, board);
-    if (name == "Chance") {
-      isChance = true;
-    } else if (name == "Community Chest") {
-      isCommunityChest = false;
-    } else if (name == "Jail") {
-      isJail = true;
-    } else if (name == "Free Parking") {
-      // do nothing
-    } else if (name == "Go To Jail") {
-      // do nothing
-    } else if (name == "Go") {
-      // do nothing
-    } else if (name == "Luxury Tax") {
-      // do nothing
-    } else if (name == "Income Tax") {
-      // do nothing
-    } else {
-      System.out.println("ERROR: SpecialProperty constructor: unknown name: " + name);}
+    switch (name) {
+      case "Chance":
+        type = SpecialPropertyType.CHANCE;
+        break;
+      case "Community Chest":
+        type = SpecialPropertyType.COMMUNITY_CHEST;
+        break;
+      case "Jail":
+        type = SpecialPropertyType.JAIL;
+        break;
+      case "Free Parking":
+        type = SpecialPropertyType.FREE_PARKING;
+        break;
+      case "Go To Jail":
+        type = SpecialPropertyType.GO_TO_JAIL;
+        break;
+      case "Go":
+        type = SpecialPropertyType.GO;
+        break;
+      case "Luxury Tax":
+        type = SpecialPropertyType.LUXURY_TAX;
+        break;
+      case "Income Tax":
+        type = SpecialPropertyType.INCOME_TAX;
+        break;
+      default:
+        throw new IllegalArgumentException("Invalid special property name");
     }
+  }
 
   @Override
   public void payRent(Player player) {
-    if (isChance) {
+    if (type == SpecialPropertyType.CHANCE) {
       board.chance.drawnBy(player);
     } else {
       board.communityChest.drawnBy(player);
     }
+  }
+
+  public static enum SpecialPropertyType {
+    CHANCE, COMMUNITY_CHEST, JAIL, FREE_PARKING, GO_TO_JAIL, GO, LUXURY_TAX, INCOME_TAX
   }
 }
