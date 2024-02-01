@@ -18,9 +18,14 @@ public class Player {
   }
 
   public void buyProperty(Property property) {
-    if (money >= property.price) {
+    if (money >= property.price && property.owner == Property.nullPlayer && property instanceof SpecialProperty == false
+        && property.owner != this) {
       money -= property.price;
       property.transferOwnership(this);
+    } else if (money < property.price) {
+      System.out.println(name + " don't have enough money to buy " + property.name);
+    } else {
+      System.out.println(property.name + " is already owned by " + property.owner.name);
     }
   }
 }

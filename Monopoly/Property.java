@@ -1,10 +1,11 @@
 public class Property {
+  public static Player nullPlayer = new Player("null");
   String name;
   int price;
   int rent;
   int mortgageValue;
   boolean isMortgaged = false;
-  Player owner = null;
+  Player owner = nullPlayer;
   Board board;
   int numHotels = 0;
   int numHouses = 0;
@@ -18,7 +19,7 @@ public class Property {
   }
 
   public void payRent(Player player) {
-    if (owner != null && owner != player) {
+    if (owner != nullPlayer && owner != player) {
       player.money -= rent;
       owner.money += rent;
     }

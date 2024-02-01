@@ -1,16 +1,18 @@
 import java.util.ArrayList;
 
+
+
 public class ActionsDeck {
   ArrayList<Action> actions = new ArrayList<Action>();
   Board board;
 
-  public ActionsDeck(String name) {
-    if (name == "Chance") {
+  public ActionsDeck(SpecialProperty.SpecialPropertyType type) {
+    if (type == SpecialProperty.SpecialPropertyType.CHANCE) {
       actions.add(new Action("Advance to Go").asPositionChange(0, true, false));
       actions.add(new Action("Advance to Illinois Ave").asPositionChange(24, true, false));
       actions.add(new Action("Advance to St. Charles Place").asPositionChange(11, true, false));
-      actions.add(new Action("Advance token to nearest Utility").asPositionChange(0, true, false));
-      actions.add(new Action("Advance token to nearest Railroad").asPositionChange(0, true, false));
+      actions.add(new Action("Advance token to nearest Utility").asPositionChange(0, true, false)); // TODO
+      actions.add(new Action("Advance token to nearest Railroad").asPositionChange(0, true, false)); // TODO
       actions.add(new Action("Bank pays you dividend of $50").asMoneyChange(50));
       actions.add(new Action("Get out of Jail free").asGetOutOfJail(true));
       actions.add(new Action("Go back 3 spaces").asPositionChange(-3, false, false));
@@ -21,7 +23,7 @@ public class ActionsDeck {
       actions.add(new Action("Take a walk on the Boardwalk").asPositionChange(39, true, false));
       actions.add(new Action("You have been elected Chairman of the Board").asMoneyChange(50));
       actions.add(new Action("Your building loan matures").asMoneyChange(150));
-    } else if (name == "Community Chest") {
+    } else if (type == SpecialProperty.SpecialPropertyType.COMMUNITY_CHEST) {
       actions.add(new Action("Advance to Go").asPositionChange(0, true, false));
       actions.add(new Action("Bank error in your favor").asMoneyChange(200));
       actions.add(new Action("Doctor's fees").asMoneyChange(-50));
@@ -90,6 +92,7 @@ public class ActionsDeck {
     }
 
     public void drawnBy(Player player) {
+      System.out.println(player.name + " drew \"" + comment + "\"");
       if (moneyChange != 0) {
         player.money += moneyChange;
       }
@@ -102,6 +105,7 @@ public class ActionsDeck {
           player.inJail = true;
         } else {
           player.move(positionChange);
+          board.properties[player.position].payRent(player);
         }
       }
 

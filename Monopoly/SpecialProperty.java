@@ -3,6 +3,7 @@ public class SpecialProperty extends Property {
 
   public SpecialProperty(String name, Board board) {
     super(name, 0, 0, 0, board);
+    owner = Property.nullPlayer;
     switch (name) {
       case "Chance":
         type = SpecialPropertyType.CHANCE;
@@ -37,9 +38,26 @@ public class SpecialProperty extends Property {
   public void payRent(Player player) {
     if (type == SpecialPropertyType.CHANCE) {
       board.chance.drawnBy(player);
-    } else {
+    } else if (type == SpecialPropertyType.COMMUNITY_CHEST) {
       board.communityChest.drawnBy(player);
+    } else if (type == SpecialPropertyType.JAIL) {
+      System.out.println(player.name + " is just visiting");
+    } else if (type == SpecialPropertyType.FREE_PARKING) {
+      player.money += 50;
+      System.out.println(player.name + " landed on Free Parking");
+    } else if (type == SpecialPropertyType.GO_TO_JAIL) {
+      player.inJail = true;
+      player.position = 10;
+      System.out.println(player.name + " landed on Go To Jail");
+    } else if (type == SpecialPropertyType.GO) {
+      System.out.println(player.name + " passed Go");
+    } else {
+      System.out.println(player.name + " landed on " + name + " NOT IMPLEMENTED");
     }
+  }
+
+  @Override
+  public void transferOwnership(Player newOwner) {
   }
 
   public static enum SpecialPropertyType {
