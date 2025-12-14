@@ -47,6 +47,8 @@ public class Board {
         properties[37] = new Property("Park Place", 350, 35, 175, this);
         properties[38] = new Property("Luxury Tax", 0, 0, 0, this);
         properties[39] = new Property("Boardwalk", 400, 50, 200, this);
+        chance.board = this;
+        communityChest.board = this;
     }
 
     public void printBoard() {
