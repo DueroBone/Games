@@ -33,4 +33,7 @@ pub enum ActionCardType {
     Move,
     GetOutOfJailFree,
     GoToJail,
+    Repairs,
+    MoveNearestUtility,
+    MoveNearestRailroad,
 }

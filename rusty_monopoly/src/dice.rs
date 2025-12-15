@@ -1,9 +1,9 @@
 use rand::{self, Rng};
 
 pub struct RollResult {
-    total: u8,
-    is_double: bool,
-    is_snake_eyes: bool,
+    pub total: u8,
+    pub is_double: bool,
+    pub is_snake_eyes: bool,
 }
 
 pub fn roll_dice() -> RollResult {
