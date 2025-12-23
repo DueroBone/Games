@@ -1,0 +1,50 @@
+package com.example.Board.Property;
+
+import com.example.Board.Dice.RollResults;
+import com.example.Player.PlayerBase;
+
+public class StreetProperty extends PropertyBase {
+    public final StreetColor color;
+    public final int buyPrice;
+    final int houseCost;
+    final int[] rentPrices;
+    int housesBuilt = 0;
+
+    public StreetProperty(String name, StreetColor color, int buyPrice, int[] rentPrices) {
+        super(PropertyType.Street, name);
+        this.color = color;
+        this.buyPrice = buyPrice;
+        this.rentPrices = rentPrices;
+
+        this.houseCost = switch (color) {
+            case Brown, LightBlue -> 50;
+            case Pink, Orange -> 100;
+            case Red, Yellow -> 150;
+            case Green, DarkBlue -> 200;
+        };
+    }
+
+    @Override
+    public void onLand(PlayerBase player, RollResults rollResults) {
+        if (owner == null) {
+            // Property is unowned, player may buy it
+            player.attemptPurchase(this);
+        } else if (owner != player) {
+            // Property is owned by another player, pay rent
+            int rent = rentPrices[housesBuilt];
+
+            player.transferMoney(owner, rent);
+        }
+    }
+
+    public boolean canBuildHouse() {
+        return housesBuilt < rentPrices.length - 1;
+    }
+
+    public void buildHouse() {
+        if (canBuildHouse()) {
+            housesBuilt++;
+            owner.adjustMoney(-houseCost);
+        }
+    }
+}
