@@ -5,6 +5,11 @@ import com.example.Board.Cards.Deck;
 import com.example.Board.Cards.Money.BankMoneyCard;
 import com.example.Board.Cards.Money.TaxCard;
 import com.example.Board.Cards.Move.GoToJailCard;
+import com.example.Board.Property.Types.DrawProperty;
+import com.example.Board.Property.Types.JailProperty;
+import com.example.Board.Property.Types.RailroadProperty;
+import com.example.Board.Property.Types.StreetProperty;
+import com.example.Board.Property.Types.UtilityProperty;
 
 public class PropertySetGenerator {
     public static final PropertyBase[] createDefault() {

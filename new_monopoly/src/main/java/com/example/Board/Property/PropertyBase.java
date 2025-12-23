@@ -38,7 +38,6 @@ public abstract class PropertyBase {
         }
         return StringFormating.box(30, 6,
                 "Property: " + name,
-                "Type: " + type,
                 ownerLine
         );
     }
