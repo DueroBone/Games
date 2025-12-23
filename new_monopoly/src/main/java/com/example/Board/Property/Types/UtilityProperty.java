@@ -4,6 +4,7 @@ import com.example.Board.Dice.RollResults;
 import com.example.Board.Property.PropertyBase;
 import com.example.Board.Property.PropertyType;
 import com.example.Player.PlayerBase;
+import com.example.Utils.StringFormating;
 
 public class UtilityProperty extends PropertyBase {
     private final int[] rentMultipliers = { 0, 4, 10 };
@@ -34,5 +35,13 @@ public class UtilityProperty extends PropertyBase {
             }
         }
         return rentMultipliers[ownedCount];
+    }
+
+    @Override
+    public String[] display() {
+        String ownerName = (owner != null) ? owner.getName() : "None";
+        return StringFormating.box(
+                name,
+                "Owner: " + ownerName);
     }
 }

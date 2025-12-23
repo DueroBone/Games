@@ -3,7 +3,6 @@ package com.example.Board.Property;
 import com.example.Game;
 import com.example.Board.Dice.RollResults;
 import com.example.Player.PlayerBase;
-import com.example.Utils.StringFormating;
 
 public abstract class PropertyBase {
     public final PropertyType type;
@@ -31,14 +30,5 @@ public abstract class PropertyBase {
 
     public abstract void onLand(PlayerBase player, RollResults rollResults);
 
-    public String display() {
-        String ownerLine = "";
-        if (owner != null) {
-            ownerLine = "Owner: " + owner.getName();
-        }
-        return StringFormating.box(30, 6,
-                "Property: " + name,
-                ownerLine
-        );
-    }
+    public abstract String[] display();
 }

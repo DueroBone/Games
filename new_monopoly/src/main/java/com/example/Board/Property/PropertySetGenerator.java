@@ -23,64 +23,64 @@ public class PropertySetGenerator {
 
         PropertyBase[] properties = new PropertyBase[] {
                 new DrawProperty("Go", goDeck),
-                new StreetProperty("Mediterranean Avenue", StreetColor.Brown,
+                new StreetProperty("Mediterranean Ave.", StreetColor.Brown,
                         60, new int[] { 2, 10, 30, 90, 160, 250 }),
                 new DrawProperty("Community Chest", communityChestDeck),
-                new StreetProperty("Baltic Avenue", StreetColor.Brown,
+                new StreetProperty("Baltic Ave.", StreetColor.Brown,
                         60, new int[] { 4, 20, 60, 180, 320, 450 }),
                 new DrawProperty("Income Tax", incomeTax),
-                new RailroadProperty("Reading Railroad"),
-                new StreetProperty("Oriental Avenue", StreetColor.LightBlue,
+                new RailroadProperty("Reading RR"),
+                new StreetProperty("Oriental Ave.", StreetColor.LightBlue,
                         100, new int[] { 6, 30, 90, 270, 400, 550 }),
                 new DrawProperty("Chance", chanceDeck),
-                new StreetProperty("Vermont Avenue", StreetColor.LightBlue,
+                new StreetProperty("Vermont Ave.", StreetColor.LightBlue,
                         100, new int[] { 6, 30, 90, 270, 400, 550 }),
-                new StreetProperty("Connecticut Avenue", StreetColor.LightBlue,
+                new StreetProperty("Connecticut Ave.", StreetColor.LightBlue,
                         120, new int[] { 8, 40, 100, 300, 450, 600 }),
 
                 new JailProperty(),
                 new StreetProperty("St. Charles Place", StreetColor.Pink,
                         140, new int[] { 10, 50, 150, 450, 625, 750 }),
                 new UtilityProperty("Electric Company"),
-                new StreetProperty("States Avenue", StreetColor.Pink,
+                new StreetProperty("States Ave.", StreetColor.Pink,
                         140, new int[] { 10, 50, 150, 450, 625, 750 }),
-                new StreetProperty("Virginia Avenue", StreetColor.Pink,
+                new StreetProperty("Virginia Ave.", StreetColor.Pink,
                         160, new int[] { 12, 60, 180, 500, 700, 900 }),
-                new RailroadProperty("Pennsylvania Railroad"),
+                new RailroadProperty("Pennsylvania RR"),
                 new StreetProperty("St. James Place", StreetColor.Orange,
                         180, new int[] { 14, 70, 200, 550, 750, 950 }),
                 new DrawProperty("Community Chest", communityChestDeck),
-                new StreetProperty("Tennessee Avenue", StreetColor.Orange,
+                new StreetProperty("Tennessee Ave.", StreetColor.Orange,
                         180, new int[] { 14, 70, 200, 550, 750, 950 }),
-                new StreetProperty("New York Avenue", StreetColor.Orange,
+                new StreetProperty("New York Ave.", StreetColor.Orange,
                         200, new int[] { 16, 80, 220, 600, 800, 1000 }),
 
                 new DrawProperty("Free Parking", freeParking),
-                new StreetProperty("Kentucky Avenue", StreetColor.Red,
+                new StreetProperty("Kentucky Ave.", StreetColor.Red,
                         220, new int[] { 18, 90, 250, 700, 875, 1050 }),
                 new DrawProperty("Chance", chanceDeck),
-                new StreetProperty("Indiana Avenue", StreetColor.Red,
+                new StreetProperty("Indiana Ave.", StreetColor.Red,
                         220, new int[] { 18, 90, 250, 700, 875, 1050 }),
-                new StreetProperty("Illinois Avenue", StreetColor.Red,
+                new StreetProperty("Illinois Ave.", StreetColor.Red,
                         240, new int[] { 20, 100, 300, 750, 925, 1100 }),
-                new RailroadProperty("B&O Railroad"),
-                new StreetProperty("Atlantic Avenue", StreetColor.Yellow,
+                new RailroadProperty("B&O RR"),
+                new StreetProperty("Atlantic Ave.", StreetColor.Yellow,
                         260, new int[] { 22, 110, 330, 800, 975, 1150 }),
-                new StreetProperty("Ventnor Avenue", StreetColor.Yellow,
+                new StreetProperty("Ventnor Ave.", StreetColor.Yellow,
                         260, new int[] { 22, 110, 330, 800, 975, 1150 }),
                 new UtilityProperty("Water Works"),
                 new StreetProperty("Marvin Gardens", StreetColor.Yellow,
                         280, new int[] { 24, 120, 360, 850, 1025, 1200 }),
 
                 new DrawProperty("Go To Jail", goToJail),
-                new StreetProperty("Pacific Avenue", StreetColor.Green,
+                new StreetProperty("Pacific Ave.", StreetColor.Green,
                         300, new int[] { 26, 130, 390, 900, 1100, 1275 }),
-                new StreetProperty("North Carolina Avenue", StreetColor.Green,
+                new StreetProperty("North Carolina Ave.", StreetColor.Green,
                         300, new int[] { 26, 130, 390, 900, 1100, 1275 }),
                 new DrawProperty("Community Chest", communityChestDeck),
-                new StreetProperty("Pennsylvania Avenue", StreetColor.Green,
+                new StreetProperty("Pennsylvania Ave.", StreetColor.Green,
                         320, new int[] { 28, 150, 450, 1000, 1200, 1400 }),
-                new RailroadProperty("Short Line Railroad"),
+                new RailroadProperty("Short Line RR"),
                 new DrawProperty("Chance", chanceDeck),
                 new StreetProperty("Park Place", StreetColor.DarkBlue,
                         350, new int[] { 35, 175, 500, 1100, 1300, 1500 }),
@@ -94,11 +94,11 @@ public class PropertySetGenerator {
 
     public static Card[] createChanceCards() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createChanceCards'");
+        return new Card[0];
     }
 
     public static Card[] createCommunityChestCards() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createCommunityChestCards'");
+        return new Card[0];
     }
 }

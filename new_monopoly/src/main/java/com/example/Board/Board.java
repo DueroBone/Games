@@ -3,6 +3,7 @@ package com.example.Board;
 import com.example.Game;
 import com.example.Board.Property.PropertyBase;
 import com.example.Board.Property.PropertySetGenerator;
+import com.example.Utils.StringFormating;
 
 public class Board {
     public final PropertyBase[] properties = new PropertyBase[40];
@@ -21,5 +22,13 @@ public class Board {
         for (PropertyBase property : properties) {
             property.setGame(game);
         }
+    }
+
+    public String toString() {
+        String[][] propertyDisplays = new String[properties.length][];
+        for (int i = 0; i < properties.length; i++) {
+            propertyDisplays[i] = properties[i].display();
+        }
+        return StringFormating.circleBoxes(10, 10, propertyDisplays);
     }
 }

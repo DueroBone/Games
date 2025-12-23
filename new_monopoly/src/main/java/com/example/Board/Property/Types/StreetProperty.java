@@ -5,6 +5,7 @@ import com.example.Board.Property.PropertyBase;
 import com.example.Board.Property.PropertyType;
 import com.example.Board.Property.StreetColor;
 import com.example.Player.PlayerBase;
+import com.example.Utils.StringFormating;
 
 public class StreetProperty extends PropertyBase {
     public final StreetColor color;
@@ -49,5 +50,15 @@ public class StreetProperty extends PropertyBase {
             housesBuilt++;
             owner.adjustMoney(-houseCost);
         }
+    }
+
+    @Override
+    public String[] display() {
+        String ownerName = (owner != null) ? owner.getName() : "None";
+        return StringFormating.box(
+                name,
+                "Color: " + color.toString(),
+                "Owner: " + ownerName,
+                "Houses: " + housesBuilt);
     }
 }

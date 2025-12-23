@@ -4,9 +4,10 @@ import com.example.Board.Dice.RollResults;
 import com.example.Board.Property.PropertyBase;
 import com.example.Board.Property.PropertyType;
 import com.example.Player.PlayerBase;
+import com.example.Utils.StringFormating;
 
 public class RailroadProperty extends PropertyBase {
-    private static final int[] rentPrices = {0, 25, 50, 100, 200};
+    private static final int[] rentPrices = { 0, 25, 50, 100, 200 };
 
     public RailroadProperty(String name) {
         super(PropertyType.Railroad, name);
@@ -30,5 +31,17 @@ public class RailroadProperty extends PropertyBase {
             int rent = rentPrices[ownedCount]; // Rent is based on number of railroads owned
             player.transferMoney(owner, rent);
         }
+    }
+
+    @Override
+    public String[] display() {
+        String ownerName = (owner != null) ? owner.getName() : "None";
+        return StringFormating.box(
+                name,
+                "Owner: " + ownerName,
+                "____       ",
+                "|DD|____T_ ",
+                "|_ |_____|<",
+                " @-@-@-oo\\");
     }
 }

@@ -4,6 +4,7 @@ import com.example.Board.Dice.RollResults;
 import com.example.Board.Property.PropertyBase;
 import com.example.Board.Property.PropertyType;
 import com.example.Player.PlayerBase;
+import com.example.Utils.StringFormating;
 
 public class JailProperty extends PropertyBase {
     public JailProperty() {
@@ -12,7 +13,14 @@ public class JailProperty extends PropertyBase {
 
     @Override
     public void onLand(PlayerBase player, RollResults rollResults) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onLand'");
+        // Just visiting, no action needed
+    }
+
+    @Override
+    public String[] display() {
+        return StringFormating.box(
+                "Jail",
+                "", "", "", "",
+                "Just Visiting");
     }
 }
