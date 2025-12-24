@@ -24,6 +24,86 @@ public class DrawProperty extends PropertyBase {
 
     @Override
     public String[] display() {
-        return StringFormating.box(name);
+        String[] icon = switch (name) {
+            case "Chance" -> getChanceIcon();
+            case "Community Chest" -> getCommunityChestIcon();
+            default -> new String[] { "", "", "", "", "" };
+        };
+        return StringFormating.box(name,
+                icon[0],
+                icon[1],
+                icon[2],
+                icon[3],
+                icon[4]);
+    }
+
+    // ====== Icons for different draw types ======
+    private String[] getChanceIcon() {
+        return new String[] {
+                "   ===    ",
+                " //   \\\\   ",
+                "     //   ",
+                "    ||    ",
+                "    OO    " };
+    }
+
+    private String[] getCommunityChestIcon() {
+        return new String[] {
+                " ╔═════════╗ ",
+                " ║  ╔═╬══  ║ ",
+                " ║  ╚═╬═╗  ║ ",
+                " ║  ══╬═╝  ║ ",
+                " ╚═════════╝ "
+        };
+    }
+
+    private String[] getIncomeTaxIcon() {
+        return new String[] {
+                "",
+                "",
+                "",
+                "",
+                ""
+        };
+    }
+
+    private String[] getLuxuryTaxIcon() {
+        return new String[] {
+                "",
+                "",
+                "",
+                "",
+                ""
+        };
+    }
+
+    private String[] getGoToJailIcon() {
+        return new String[] {
+                "",
+                "",
+                "",
+                "",
+                ""
+        };
+    }
+
+    private String[] getFreeParkingIcon() {
+        return new String[] {
+                "",
+                "",
+                "",
+                "",
+                ""
+        };
+    }
+
+    private String[] getGoIcon() {
+        return new String[] {
+                "",
+                "",
+                "",
+                "",
+                ""
+        };
     }
 }
