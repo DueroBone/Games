@@ -23,6 +23,8 @@ public class StringFormating {
      * @return
      */
     public static String[] box(int width, int height, String... contentLines) {
+        // It has a clean border. No touchie.
+        // This is such horrendous spaghetti code that any touching WILL break it.
         StringBuilder boxBuilder = new StringBuilder();
         for (int i = 0; i < height; i++) {
             String content = "";
@@ -87,6 +89,15 @@ public class StringFormating {
                     sb.append(boxed[i][line].substring(1));
                 }
             }
+            if (line == BOX_HEIGHT - 1) {
+                for (int i = 0; i < MIDDLE_BOX_COUNT + 1; i++) {
+                    sb.setCharAt(i * (BOX_WIDTH - 1) + boxed[i][line].length() - 1, '┬');
+                }
+                sb.setCharAt((MIDDLE_BOX_COUNT + 1) * (BOX_WIDTH - 1) + boxed[MIDDLE_BOX_COUNT][line].length() - 1,
+                        '┐');
+                sb.setCharAt(0, '┌');
+
+            }
             sb.append('\n');
         }
 
@@ -100,6 +111,12 @@ public class StringFormating {
 
             for (int line = 0; line < BOX_HEIGHT; line++) {
                 sb.append(left[line]);
+                if (sb.charAt(sb.length() - left[line].length()) == '┼') {
+                    sb.setCharAt(sb.length() - left[line].length(), '├');
+                    if (row != 0) {
+                        sb.setCharAt(sb.length() - 1, '┤');
+                    }
+                }
                 if ((line == 0) && row == 0) {
                     String divider = top.substring(1, top.length()).repeat(MIDDLE_BOX_COUNT);
                     sb.append(divider.substring(0, divider.length() - 1));
@@ -107,6 +124,16 @@ public class StringFormating {
                     sb.append(" ".repeat(INNER_GAP_WIDTH));
                 }
                 sb.append(right[line]);
+                if (sb.charAt(sb.length() - right[line].length()) == '┼') {
+                    sb.setCharAt(sb.length() - 1, '┤');
+                    if (row != 0) {
+                        sb.setCharAt(sb.length() - right[line].length(), '├');
+                    } else {
+                        for (int i = 2; i < MIDDLE_BOX_COUNT + 1; i++) {
+                            sb.setCharAt(sb.length() - (BOX_WIDTH - 1) * i - 1, '┴');
+                        }
+                    }
+                }
                 sb.append('\n');
             }
         }
@@ -123,7 +150,19 @@ public class StringFormating {
             }
             sb.append('\n');
         }
-        sb.append(top.substring(0, top.length() - 1).repeat(11) + "┼");
+        sb.append(top.substring(0, top.length() - 1).replace("┼", "┴").repeat(11) + "┘");
+        sb.setCharAt(sb.length() -
+                (top.substring(0, top.length() - 1).repeat(11) + "┘").length(), '└');
+
+        for (int i = 2; i < MIDDLE_BOX_COUNT + 1; i++) {
+            sb.setCharAt(sb.length() - (BOX_WIDTH - 1) * i - 1 - 7
+                    - ((top.substring(0, top.length() - 1).repeat(11) + "┘").length() * BOX_HEIGHT), '┬');
+        }
+
+        sb.setCharAt(sb.length() - (BOX_WIDTH - 1) * (MIDDLE_BOX_COUNT + 2) - 1 - 7
+                - ((top.substring(0, top.length() - 1).repeat(11) + "┘").length() * BOX_HEIGHT), '├');
+        sb.setCharAt(sb.length() - (BOX_WIDTH - 1) * (MIDDLE_BOX_COUNT + 2) - 1 - 7
+                - ((top.substring(0, top.length() - 1).repeat(11) + "┘").length() * (BOX_HEIGHT - 1) + 1), '┤');
 
         return sb.toString();
     }

@@ -42,6 +42,6 @@ public class RailroadProperty extends PropertyBase {
                 "",
                 "|{}|____V_ ",
                 "|==|=====| ",
-                "  @-@-@-oo\\");
+                " @-@-@-oo \\");
     }
 }
