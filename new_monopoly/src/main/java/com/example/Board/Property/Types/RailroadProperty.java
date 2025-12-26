@@ -39,9 +39,9 @@ public class RailroadProperty extends PropertyBase {
         return StringFormating.box(
                 name,
                 "Owner: " + ownerName,
-                "",
-                "|{}|____V_ ",
-                "|==|=====| ",
-                " @-@-@-oo \\");
+                " ___   *.   ",
+                "|{ }|___Y_  ",
+                "|===|=====| ",
+                " @-@-@--oo \\ ");
     }
 }

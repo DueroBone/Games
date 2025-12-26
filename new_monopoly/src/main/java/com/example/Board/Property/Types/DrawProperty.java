@@ -27,28 +27,36 @@ public class DrawProperty extends PropertyBase {
         String[] icon = switch (name) {
             case "Chance" -> getChanceIcon();
             case "Community Chest" -> getCommunityChestIcon();
-            default -> new String[] { "", "", "", "", "" };
+            case "Income Tax" -> getIncomeTaxIcon();
+            case "Luxury Tax" -> getLuxuryTaxIcon();
+            case "Go To Jail" -> getGoToJailIcon();
+            case "Free Parking" -> getFreeParkingIcon();
+            case "Go" -> getGoIcon();
+            default -> new String[] { "", "", "", "", "", "" };
         };
-        return StringFormating.box(name,
+        return StringFormating.box(
                 icon[0],
                 icon[1],
                 icon[2],
                 icon[3],
-                icon[4]);
+                icon[4],
+                icon[5]);
     }
 
     // ====== Icons for different draw types ======
     private String[] getChanceIcon() {
         return new String[] {
-                "   ===    ",
-                " //   \\\\   ",
-                "     //   ",
-                "    ||    ",
-                "    OO    " };
+                "Chance",
+                "    ===    ",
+                "  //   \\\\  ",
+                "      //   ",
+                "     ||    ",
+                "     <>    " };
     }
 
     private String[] getCommunityChestIcon() {
         return new String[] {
+                "Community chest",
                 " ╔═════════╗ ",
                 " ║  ╔═╬══  ║ ",
                 " ║  ╚═╬═╗  ║ ",
@@ -59,51 +67,56 @@ public class DrawProperty extends PropertyBase {
 
     private String[] getIncomeTaxIcon() {
         return new String[] {
-                "",
-                "",
-                "",
-                "",
-                ""
+                "Income Tax",
+                "          ",
+                "          ",
+                "     X    ",
+                "          ",
+                "          "
         };
     }
 
     private String[] getLuxuryTaxIcon() {
         return new String[] {
-                "",
-                "",
-                "",
-                "",
-                ""
+                "Luxury Tax",
+                "         ",
+                "   <X>   ",
+                " ╭──╨──╮ ",
+                " │     │ ",
+                " ╰─────╯ "
         };
     }
 
     private String[] getGoToJailIcon() {
         return new String[] {
-                "",
-                "",
-                "",
-                "",
-                ""
+                "Go To Jail",
+                "            ",
+                "  ^───^───^ ",
+                "  │  $$$  │ ",
+                "  │  $$$  │ ",
+                "   \\_____/  "
         };
     }
 
     private String[] getFreeParkingIcon() {
         return new String[] {
-                "",
-                "",
-                "",
-                "",
-                ""
+                "Free Parking",
+                "         ",
+                " ╭─────╮ ",
+                " │ [ ] │ ",
+                "╭┼──0──┼╮",
+                "O       O"
         };
     }
 
     private String[] getGoIcon() {
         return new String[] {
-                "",
-                "",
-                "",
-                "",
-                ""
+                "╔═════╗   ╔════╗",
+                "║     ╨   ║    ║",
+                "║   ══╗   ║    ║",
+                "║     ║   ║    ║",
+                "╚═════╝   ╚════╝",
+                "K────────"
         };
     }
 }

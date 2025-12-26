@@ -1,7 +1,7 @@
 package com.example.Player;
 
-import com.example.Game;
 import com.example.Board.Property.PropertyBase;
+import com.example.Utils.Game;
 
 public abstract class PlayerBase {
     int position;

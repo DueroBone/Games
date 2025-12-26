@@ -40,8 +40,28 @@ public class UtilityProperty extends PropertyBase {
     @Override
     public String[] display() {
         String ownerName = (owner != null) ? owner.getName() : "None";
+        String[] icon = switch (name) {
+            case "Electric Company" -> new String[] {
+                    "   ╭─────╮  ",
+                    "    ╲*X*╱   ",
+                    "     ╲ ╱    ",
+                    "      ╳     "
+            };
+            case "Water Works" -> new String[] {
+                    "             ",
+                    "  ║   X      ",
+                    "  ╠═══╧═══╗  ",
+                    "  ║          "
+            };
+            default -> new String[] { "", "", "", "", "", "", ""
+            };
+        };
         return StringFormating.box(
                 name,
-                "Owner: " + ownerName);
+                "Owner: " + ownerName,
+                icon[0],
+                icon[1],
+                icon[2],
+                icon[3]);
     }
 }

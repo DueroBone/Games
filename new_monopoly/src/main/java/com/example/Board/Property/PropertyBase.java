@@ -1,8 +1,8 @@
 package com.example.Board.Property;
 
-import com.example.Game;
 import com.example.Board.Dice.RollResults;
 import com.example.Player.PlayerBase;
+import com.example.Utils.Game;
 
 public abstract class PropertyBase {
     public final PropertyType type;

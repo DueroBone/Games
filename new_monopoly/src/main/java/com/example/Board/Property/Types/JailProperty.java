@@ -20,7 +20,10 @@ public class JailProperty extends PropertyBase {
     public String[] display() {
         return StringFormating.box(
                 "Jail",
-                "", "", "", "",
+                "╶╥─╥─╥─╥╴", 
+                " ║ ║ ║ ║ ", 
+                " ║ ║ ║ ║ ", 
+                "╶╨─╨─╨─╨╴",
                 "Just Visiting");
     }
 }

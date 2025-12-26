@@ -1,8 +1,8 @@
 package com.example.Board;
 
-import com.example.Game;
 import com.example.Board.Property.PropertyBase;
 import com.example.Board.Property.PropertySetGenerator;
+import com.example.Utils.Game;
 import com.example.Utils.StringFormating;
 
 public class Board {

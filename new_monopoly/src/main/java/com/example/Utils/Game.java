@@ -1,4 +1,4 @@
-package com.example;
+package com.example.Utils;
 
 import com.example.Board.Board;
 import com.example.Player.PlayerBase;
