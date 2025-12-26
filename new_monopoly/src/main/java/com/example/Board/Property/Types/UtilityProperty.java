@@ -7,6 +7,7 @@ import com.example.Player.PlayerBase;
 import com.example.Utils.StringFormating;
 
 public class UtilityProperty extends PropertyBase {
+    public final int buyPrice = 150;
     private final int[] rentMultipliers = { 0, 4, 10 };
 
     public UtilityProperty(String name) {
@@ -17,7 +18,7 @@ public class UtilityProperty extends PropertyBase {
     public void onLand(PlayerBase player, RollResults rollResults) {
         if (owner == null) {
             // Property is unowned, player may buy it
-            player.attemptPurchase(this);
+            player.onLandUnowned(this);
         } else if (owner != player) {
             // Property is owned by another player, pay rent
             int diceTotal = rollResults.getTotal();

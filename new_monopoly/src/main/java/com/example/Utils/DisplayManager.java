@@ -1,8 +1,14 @@
 package com.example.Utils;
 
+import java.util.concurrent.CancellationException;
+
+import com.example.Board.Property.PropertyBase;
+import com.example.Player.PlayerBase;
+
 public class DisplayManager {
     Game game;
     int[] selectedCell = null; // x, y
+    int currentPlayerIndex = 0;
 
     public DisplayManager(Game game) {
         this.game = game;
@@ -16,38 +22,12 @@ public class DisplayManager {
         System.out.println(boardStr.toString());
     }
 
-    private void parseInput(String input) {
-        for (char c : input.toCharArray()) {
-            switch (c) {
-                case 'w' -> moveCursorUp();
-                case 's' -> moveCursorDown();
-                case 'a' -> moveCursorLeft();
-                case 'd' -> moveCursorRight();
-                case 'q' -> selectedCell = null;
-
-                case 'r' -> { // roll
-                }
-
-                case 'u' -> { // upgrade
-                }
-                case 'b' -> { // buy
-                }
-                case 'm' -> { // mortgage
-                }
-                case 'h' -> { // help
-                }
-                default -> { // do nothing
-                }
-            }
-        }
-    }
-
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    private void moveCursorDown() {
+    public void moveCursorDown() {
         if (selectedCell != null) {
             selectedCell = new int[] { 0, 0 };
             return;
@@ -64,7 +44,7 @@ public class DisplayManager {
         }
     }
 
-    private void moveCursorUp() {
+    public void moveCursorUp() {
         if (selectedCell == null) {
             selectedCell = new int[] { 0, 10 };
             return;
@@ -81,7 +61,7 @@ public class DisplayManager {
         }
     }
 
-    private void moveCursorRight() {
+    public void moveCursorRight() {
         if (selectedCell == null) {
             selectedCell = new int[] { 0, 0 };
             return;
@@ -98,7 +78,7 @@ public class DisplayManager {
         }
     }
 
-    private void moveCursorLeft() {
+    public void moveCursorLeft() {
         if (selectedCell == null) {
             selectedCell = new int[] { 10, 0 };
             return;
@@ -114,4 +94,27 @@ public class DisplayManager {
             }
         }
     }
+
+    public PropertyBase getSelectedProperty() {
+        if (selectedCell == null) {
+            return null;
+        }
+        int propertyIndex = locationToIndex(selectedCell[0], selectedCell[1]);
+        return game.board.properties[propertyIndex];
+    }
+
+    private int locationToIndex(int x, int y) {
+        if (y == 0) {
+            return x;
+        } else if (x == 10) {
+            return 10 + y;
+        } else if (y == 10) {
+            return 20 + (10 - x);
+        } else if (x == 0) {
+            return 30 + (10 - y);
+        } else {
+            throw new IllegalArgumentException("Invalid board coordinates");
+        }
+    }
+
 }

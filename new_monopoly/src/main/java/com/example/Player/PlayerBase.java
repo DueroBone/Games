@@ -60,7 +60,8 @@ public abstract class PlayerBase {
     }
 
     // Handled differently by computer and human players
-    public abstract void attemptPurchase(PropertyBase property);
+    public abstract void onLandUnowned(PropertyBase property);
+
 
     /**
      * Handle bankruptcy scenario

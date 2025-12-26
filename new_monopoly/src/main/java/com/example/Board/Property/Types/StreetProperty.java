@@ -32,7 +32,7 @@ public class StreetProperty extends PropertyBase {
     public void onLand(PlayerBase player, RollResults rollResults) {
         if (owner == null) {
             // Property is unowned, player may buy it
-            player.attemptPurchase(this);
+            player.onLandUnowned(this);
         } else if (owner != player) {
             // Property is owned by another player, pay rent
             int rent = rentPrices[housesBuilt];
@@ -49,6 +49,13 @@ public class StreetProperty extends PropertyBase {
         if (canBuildHouse()) {
             housesBuilt++;
             owner.adjustMoney(-houseCost);
+        }
+    }
+
+    public void sellHouse() {
+        if (housesBuilt > 0) {
+            housesBuilt--;
+            owner.adjustMoney(houseCost / 2);
         }
     }
 

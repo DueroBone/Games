@@ -7,6 +7,7 @@ import com.example.Player.PlayerBase;
 import com.example.Utils.StringFormating;
 
 public class RailroadProperty extends PropertyBase {
+    public final int buyPrice = 200;
     private static final int[] rentPrices = { 0, 25, 50, 100, 200 };
 
     public RailroadProperty(String name) {
@@ -17,7 +18,7 @@ public class RailroadProperty extends PropertyBase {
     public void onLand(PlayerBase player, RollResults rollResults) {
         if (owner == null) {
             // Property is unowned, player may buy it
-            player.attemptPurchase(this);
+            player.onLandUnowned(this);
         } else if (owner != player) {
             // Property is owned by another player, pay rent
 
